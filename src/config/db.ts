@@ -1,21 +1,15 @@
 import { MongoClient, Db } from "mongodb";
 import { env } from "./env.js";
 
-let client: MongoClient | null = null;
-let db: Db | null = null;
+export const client = new MongoClient(env.MONGO_URI);
+export const db = client.db(env.DB_NAME);
 
 /**
  * Initializes and connects to the MongoDB server.
  */
 export async function connectDB(): Promise<Db> {
-  if (db && client) {
-    return db;
-  }
-
   try {
-    client = new MongoClient(env.MONGO_URI);
     await client.connect();
-    db = client.db(env.DB_NAME);
     console.log(`[Database] Successfully connected to MongoDB: ${env.DB_NAME}`);
     return db;
   } catch (error) {
@@ -24,22 +18,19 @@ export async function connectDB(): Promise<Db> {
   }
 }
 
-/**
- * Returns the connected Db instance. Throws an error if not connected yet.
- */
-export function getDb(): Db {
-  if (!db) {
-    throw new Error("[Database] Database not initialized. Call connectDB() first.");
-  }
-  return db;
-}
 
 /**
- * Returns the MongoClient instance. Throws an error if not connected yet.
+ * Closes the active MongoDB connection gracefully.
  */
-export function getMongoClient(): MongoClient {
-  if (!client) {
-    throw new Error("[Database] MongoClient not initialized. Call connectDB() first.");
+export async function closeDB(): Promise<void> {
+  if (client) {
+    try {
+      await client.close();
+      console.log("[Database] Active MongoDB connection closed gracefully.");
+    } catch (error) {
+      console.error("[Database] Error closing MongoDB connection:", error);
+      throw error;
+    }
   }
-  return client;
 }
+

@@ -1,25 +1,30 @@
 import type { Request, Response, NextFunction } from "express";
+import { auth } from "../config/auth.js";
 
 /**
- * Authentication middleware placeholder.
- * This will validate Better Auth sessions in the next implementation phase.
+ * Middleware to require a valid session via Better Auth.
+ * Automatically injects the user and session objects into req.user and req.session.
  */
 export async function requireAuth(req: Request, res: Response, next: NextFunction) {
-  // Placeholder implementation: Allow all requests for now.
-  //
-  // In the next phase, we will implement this as:
-  // try {
-  //   const session = await auth.api.getSession({ headers: req.headers });
-  //   if (!session) {
-  //     return res.status(401).json({ error: "Unauthorized - Session invalid or expired" });
-  //   }
-  //   req.user = session.user;
-  //   req.session = session.session;
-  //   next();
-  // } catch (error) {
-  //   next(error);
-  // }
+  try {
+    const session = await auth.api.getSession({
+      headers: new Headers(req.headers as any),
+    });
 
-  console.log("[Auth Middleware] requireAuth placeholder executed (Access granted)");
-  next();
+    if (!session) {
+      return res.status(401).json({
+        success: false,
+        error: {
+          message: "Unauthorized - No active session found.",
+          statusCode: 401,
+        },
+      });
+    }
+
+    req.user = session.user;
+    req.session = session.session;
+    next();
+  } catch (error) {
+    next(error);
+  }
 }
