@@ -9,8 +9,7 @@ const requiredEnv = [
   "DB_NAME",
   "BETTER_AUTH_SECRET",
   "BETTER_AUTH_URL",
-  "GOOGLE_CLIENT_ID",
-  "GOOGLE_CLIENT_SECRET",
+  "GEMINI_API_KEY",
 ] as const;
 
 export const env = {
@@ -19,8 +18,7 @@ export const env = {
   DB_NAME: process.env.DB_NAME || "studypilot_ai",
   BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET || "development-secret-key-must-be-at-least-32-characters",
   BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || "http://localhost:5000",
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
   NODE_ENV: process.env.NODE_ENV || "development",
 };
 
