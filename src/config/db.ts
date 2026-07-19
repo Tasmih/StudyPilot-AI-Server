@@ -1,7 +1,17 @@
+import dns from "dns";
+
+dns.setServers([
+  "8.8.8.8",
+  "8.8.4.4",
+]);
+
 import { MongoClient, Db } from "mongodb";
 import { env } from "./env.js";
 
-export const client = new MongoClient(env.MONGO_URI);
+
+export const client = new MongoClient(env.MONGO_URI, {
+  serverSelectionTimeoutMS: 10000,
+});
 export const db = client.db(env.DB_NAME);
 
 /**

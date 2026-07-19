@@ -3,8 +3,6 @@ import cors from "cors";
 import { env } from "./config/env.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
-// Removed Better Auth node handler import
-import { auth } from "./config/auth.js";
 import apiRouter from "./routes/index.js";
 
 const app = express();
