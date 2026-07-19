@@ -1,0 +1,1302 @@
+[
+  {
+    "title": "Python Programming Basics",
+    "description": "Learn python syntax, control flow, functions, and list comprehension.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-19T16:29:02.238Z"
+    }
+  },
+  {
+    "title": "Object-Oriented Programming (OOP) in Java",
+    "description": "Understand classes, interfaces, inheritance, polymorphism, and encapsulation.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Relational Databases & SQL Queries",
+    "description": "Master schemas, select queries, joins, groupings, indexes, and transactions.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.1,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "HTML, CSS & JavaScript Essentials",
+    "description": "Introduction to frontend web development with modern DOM manipulations.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "12 Weeks",
+    "rating": 4.1,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Data Structures: Lists, Trees, & Graphs",
+    "description": "Analyze binary search trees, stacks, queues, hash maps, and graph traversals.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4.2,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Design & Analysis of Algorithms",
+    "description": "Covers divide-and-conquer, greedy approaches, dynamic programming, and complexity.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4.2,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-09T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Cloud Computing",
+    "description": "Learn cloud models (IaaS, PaaS, SaaS) on AWS, virtual machines, and storage.",
+    "category": "Computer Science",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.3,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-07T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Docker Containers & Kubernetes Orchestration",
+    "description": "Understand containerization, Dockerfiles, pod management, and service routing.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.3,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-05T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Web Security & JWT Authentication",
+    "description": "Learn hashing, salting, encryption, CORS, CORS policy, and session management.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.4,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-03T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Git Version Control & GitHub Flow",
+    "description": "Foundational git commands: commits, branching, merging, and pull requests.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.4,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-01T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "React Framework & Hooks Fundamentals",
+    "description": "Build modular web UIs using functional components, state, and hooks.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "8 Weeks",
+    "rating": 4.5,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-29T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Node.js & Express REST APIs",
+    "description": "Develop server APIs, router bindings, middleware chains, and JSON validation.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.5,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-27T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Machine Learning Foundations in Python",
+    "description": "Implement regression models, classification arrays, and decision tree classifiers.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.5,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-25T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "NoSQL Databases & MongoDB Basics",
+    "description": "Understand document storage, collections, aggregate queries, and model interfaces.",
+    "category": "Computer Science",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.6,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-23T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Compiler Design & Lexical Analysis",
+    "description": "Study finite automata, context-free grammars, parsers, and abstract syntax trees.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.6,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-21T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Data Science & Pandas Analytics",
+    "description": "Data manipulation, cleaning, aggregation, and visualization in Jupyter Notebooks.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.7,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Mobile App Development with Flutter",
+    "description": "Build cross-platform iOS and Android apps using Dart and state widgets.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "4 Weeks",
+    "rating": 4.7,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Operating Systems: Processes & Memory",
+    "description": "Study threads, CPU scheduling, virtual memory, paging, and deadlocks.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "6 Weeks",
+    "rating": 4.8,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Linux System Administration basics",
+    "description": "Command line operations, file permissions, shell scripting, and service checks.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.8,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "UI/UX Design Principles & Figma Mockups",
+    "description": "Learn spacing, layouts, colors, wireframes, and responsive user interfaces.",
+    "category": "Computer Science",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.9,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Calculus I: Limits & Derivatives",
+    "description": "Introduction to differential calculus, limit theorems, rates of change, and optimization.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Calculus II: Integrals & Series",
+    "description": "Master integration techniques, area calculations, sequences, and power series.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Linear Algebra: Matrices & Vectors",
+    "description": "Matrix operations, determinants, vector spaces, and systems of linear equations.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.1,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Linear Algebra: Eigenvalues & Projections",
+    "description": "Learn eigenvectors, diagonalization, inner products, and orthogonal projections.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "12 Weeks",
+    "rating": 4.1,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Probability & Random Variables",
+    "description": "Sample spaces, probability laws, Bayes' theorem, and discrete distributions.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4.2,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Statistical Inference & Hypothesis Testing",
+    "description": "Learn estimation, confidence intervals, p-values, z-tests, and t-tests.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4.2,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-09T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Discrete Mathematics & Graph Theory",
+    "description": "Logic, set theory, combinatorics, modular arithmetic, and network graph structures.",
+    "category": "Mathematics",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.3,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-07T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Ordinary Differential Equations",
+    "description": "Solve first-order and second-order linear differential equations.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.3,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-05T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Multivariable Calculus",
+    "description": "Partial derivatives, multiple integrals, vector fields, and Green's/Stoke's theorems.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.4,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-03T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Number Theory Fundamentals",
+    "description": "Study prime numbers, divisibility rules, Euclidean algorithm, and congruences.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.4,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-01T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Real Analysis",
+    "description": "Rigorous proofs of limits, continuity, sequences, and Riemann integration.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "8 Weeks",
+    "rating": 4.5,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-29T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Bayesian Statistics & Modeling",
+    "description": "Understand prior probabilities, likelihood functions, and Markov Chain Monte Carlo.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.5,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-27T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Abstract Algebra: Group Theory",
+    "description": "Symmetric groups, cyclic groups, subgroups, Lagrange's theorem, and isomorphisms.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.5,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-25T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Numerical Methods & Optimization",
+    "description": "Root-finding algorithms, numerical integration, and linear programming bounds.",
+    "category": "Mathematics",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.6,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-23T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Geometry & Trigonometry Principles",
+    "description": "Euclidean proofs, circle properties, trigonometric functions, and coordinate geometry.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.6,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-21T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Complex Analysis Basics",
+    "description": "Functions of complex variables, analyticity, Cauchy's theorem, and residue calculus.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.7,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Regression Analysis Models",
+    "description": "Simple and multiple linear regression, residual analysis, and ANOVA tables.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "4 Weeks",
+    "rating": 4.7,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Graph Algorithms & Optimization",
+    "description": "Shortest paths (Dijkstra, Bellman-Ford), minimum spanning trees, and network flow.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "6 Weeks",
+    "rating": 4.8,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Game Theory & Strategic Decision Making",
+    "description": "Nash equilibrium, zero-sum games, dominant strategies, and payoff matrices.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.8,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Financial Mathematics & Annuities",
+    "description": "Simple interest, compound interest, present value, annuities, and loan amortization.",
+    "category": "Mathematics",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.9,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Human Anatomy: Skeletal & Muscular Systems",
+    "description": "Detailed study of bone structures, muscle actions, origins, and insertions.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Human Physiology: Cardiovascular & Respiratory",
+    "description": "Learn cardiac cycles, blood flow mechanics, gas exchange, and lung volumes.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Biochemistry: Metabolic Pathways",
+    "description": "Glycolysis, Krebs cycle, electron transport chain, and ATP synthesis pathways.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.1,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "General Pharmacology & Pharmacokinetics",
+    "description": "Absorption, distribution, metabolism, excretion of drugs, and receptor actions.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "12 Weeks",
+    "rating": 4.1,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Clinical Pathology & Disease Mechanisms",
+    "description": "Study cellular injury, inflammation response, tissue repair, and neoplastic growth.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4.2,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Immunology & Lymphatic Systems",
+    "description": "Innate and adaptive immunity, antibody structures, T-cell receptors, and vaccines.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4.2,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-09T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Medical Microbiology: Bacteria & Viruses",
+    "description": "Pathogenic characteristics, transmission vectors, and antibiotic resistance.",
+    "category": "Medical Science",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.3,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-07T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Neuroanatomy & Central Nervous System",
+    "description": "Brain structures, spinal tracts, cranial nerves, and sensory pathways.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.3,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-05T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Endocrinology & Hormone Systems",
+    "description": "Study thyroid, adrenal, pituitary glands, hormone synthesis, and feed-back loops.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.4,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-03T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Medical Genetics & DNA Replication",
+    "description": "Chromosome structure, mendelian inheritance patterns, mutations, and PCR methods.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.4,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-01T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Hematology & Blood Disorders",
+    "description": "Red/white blood cell disorders, coagulation pathways, and leukemia classifications.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "8 Weeks",
+    "rating": 4.5,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-29T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Epidemiology & Public Health",
+    "description": "Incidence, prevalence, study designs, outbreak investigations, and preventive health.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.5,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-27T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Psychiatry & DSM-5 Diagnoses",
+    "description": "Anxiety, depressive disorders, schizophrenia characteristics, and clinical therapies.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.5,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-25T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Clinical Pharmacology: Antibiotics & Antivirals",
+    "description": "Mechanism of action, spectrum of activity, and clinical uses of antimicrobials.",
+    "category": "Medical Science",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.6,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-23T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Renal Physiology & Fluid Balance",
+    "description": "Nephron functions, glomerular filtration rate, and acid-base regulation.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.6,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-21T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Gastrointestinal Biology & Nutrition",
+    "description": "Digestion mechanisms, nutrient absorption, enzyme actions, and liver metabolism.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.7,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Pediatric Medicine Foundations",
+    "description": "Developmental milestones, pediatric vaccine schedules, and common childhood illnesses.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "4 Weeks",
+    "rating": 4.7,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Cardiology & ECG Interpretation",
+    "description": "Read electrocardiograms, heart block stages, and arrhythmia classifications.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "6 Weeks",
+    "rating": 4.8,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Medical Terminology Basics",
+    "description": "Latin and Greek roots, prefixes, suffixes, and anatomical naming conventions.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.8,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Clinical Ethics & Patient Confidentiality",
+    "description": "Bioethics principles, informed consent, HIPAA compliance, and professional codes.",
+    "category": "Medical Science",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.9,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Principles of Microeconomics",
+    "description": "Supply and demand curves, market structures, price elasticity, and consumer choice.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Financial Accounting: Balance Sheets & Ledgers",
+    "description": "Double-entry bookkeeping, income statements, and cash flow reports.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Corporate Finance & Capital Budgeting",
+    "description": "Net present value (NPV), internal rate of return (IRR), and capital structures.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.1,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Principles of Marketing & Customer Value",
+    "description": "The 4 Ps of marketing, segmentations, target markets, and brand messaging.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "12 Weeks",
+    "rating": 4.1,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Corporate Strategy & SWOT Analysis",
+    "description": "Porter's Five Forces, competitive advantage, resource-based views, and matrix options.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4.2,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Operations Management & Supply Chain",
+    "description": "Inventory systems, scheduling models, logistics, and quality assurance.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4.2,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-09T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Project Management: Agile & Waterfall",
+    "description": "Gantt charts, scrum frameworks, project timelines, sprint reviews, and backlogs.",
+    "category": "Business",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.3,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-07T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Business Law & Contracts",
+    "description": "Offer, acceptance, consideration, breach of contract, and tort liability parameters.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.3,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-05T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Organizational Behavior & Team Dynamics",
+    "description": "Motivation theories, leadership styles, communication networks, and conflict.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.4,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-03T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Managerial Accounting & Cost Allocation",
+    "description": "Cost-volume-profit analysis, budgeting variations, and direct/indirect costs.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.4,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-01T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Consumer Behavior & Market Research",
+    "description": "Surveys, focus groups, purchase decision models, and customer profiles.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "8 Weeks",
+    "rating": 4.5,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-29T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Financial Analytics & Risk Management",
+    "description": "Hedging, options, futures, value-at-risk (VaR), and portfolio optimizations.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.5,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-27T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Entrepreneurship & Startup Pitch Decks",
+    "description": "Business models, validation matrices, funding cycles, and market projections.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.5,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-25T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Digital Marketing & SEO Strategies",
+    "description": "SEO keywords, pay-per-click (PPC) setups, content funnels, and Google Analytics.",
+    "category": "Business",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.6,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-23T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "International Business & Trade Agreements",
+    "description": "Tariffs, exchange rates, multinational strategies, and trade policy balances.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.6,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-21T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Business Communication & Presentation",
+    "description": "Report writing, formal presentation techniques, slide design, and public speaking.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.7,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "E-Commerce Systems & Payment Gateways",
+    "description": "Shopping cart integrations, merchant accounts, PCI compliance, and mobile checkouts.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "4 Weeks",
+    "rating": 4.7,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Data Analytics for Business Operations",
+    "description": "Excel pivot tables, forecasting methods, database queries, and KPI dashboards.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "6 Weeks",
+    "rating": 4.8,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Human Resource Management basics",
+    "description": "Recruiting procedures, labor relations, performance evaluations, and payroll.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.8,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Negotiation Tactics & Conflict Resolution",
+    "description": "Distributive/integrative bargaining, BATNA, and mediation procedures.",
+    "category": "Business",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.9,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Philosophy & Logic",
+    "description": "Socratic dialogs, deductive reasoning, logic statements, and ethical dilemmas.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "World History: 20th Century Conflicts",
+    "description": "World War I, World War II, Cold War, treaty timelines, and geopolitical shifts.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Creative Writing: Narrative Construction",
+    "description": "Character design grids, plot arcs, setting details, pacing, and draft reviews.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.1,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1447069387593-a5de0862481e?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Sociology & Culture",
+    "description": "Social structures, institutions, norms, socialization, and class stratifications.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "12 Weeks",
+    "rating": 4.1,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to General Psychology",
+    "description": "Cognitive theory, behaviorism, memory models, personality traits, and treatments.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "4 Weeks",
+    "rating": 4.2,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-11T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Anthropology & Cultural Diversity",
+    "description": "Kinship models, linguistics, ritual patterns, field methods, and human evolution.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "6 Weeks",
+    "rating": 4.2,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-09T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Classical Literature: Shakespearean Plays",
+    "description": "Analysis of Hamlet, Macbeth, Romeo and Juliet themes, and sonnet meters.",
+    "category": "Humanities",
+    "difficulty": "Beginner",
+    "duration": "8 Weeks",
+    "rating": 4.3,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1447069387593-a5de0862481e?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-07T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Art History: Renaissance to Modernism",
+    "description": "Art styles, techniques, artistic movements, and historical context.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.3,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-05T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Ethics & Moral Philosophy",
+    "description": "Utilitarianism, deontology, virtue ethics, and applied contemporary moral problems.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.4,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-03T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Political Systems & Governance",
+    "description": "Democracy, authoritarianism, separation of powers, and public policy processes.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.4,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-07-01T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Introduction to Linguistics & Syntax",
+    "description": "Phonology, morphology, syntax trees, semantic meaning, and language families.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "8 Weeks",
+    "rating": 4.5,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1447069387593-a5de0862481e?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-29T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Creative Writing: Poetry & Meters",
+    "description": "Sonnets, free verse, rhythm, meters, rhyme schemes, and poetic imagery.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "12 Weeks",
+    "rating": 4.5,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-27T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Ancient Civilizations: Rome & Greece",
+    "description": "Rise and fall of empires, political structures, philosophy, and architectural feats.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "4 Weeks",
+    "rating": 4.5,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-25T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Modernism in 20th Century Novels",
+    "description": "Study stream of consciousness, thematic alienation, and shifts in narrative voices.",
+    "category": "Humanities",
+    "difficulty": "Intermediate",
+    "duration": "6 Weeks",
+    "rating": 4.6,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-23T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Media Studies & Digital Culture",
+    "description": "Social media analysis, news framing, audience reception, and propaganda styles.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.6,
+    "tasksCount": 16,
+    "imageUrl": "https://images.unsplash.com/photo-1447069387593-a5de0862481e?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-21T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Mythology & Comparative Religions",
+    "description": "Greek, Roman, Norse myths, sacred texts, comparative rituals, and archetypes.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.7,
+    "tasksCount": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-19T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Sociology of Education & Institutions",
+    "description": "Schooling structures, educational equity, hidden curricula, and social mobility.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "4 Weeks",
+    "rating": 4.7,
+    "tasksCount": 24,
+    "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-17T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Feminist Theory & Gender Studies",
+    "description": "Gender roles, historical waves, intersections, and contemporary theories.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "6 Weeks",
+    "rating": 4.8,
+    "tasksCount": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-15T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "Music History & Composition Basics",
+    "description": "Classical composers, scale structures, musical notation, and historical eras.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "8 Weeks",
+    "rating": 4.8,
+    "tasksCount": 10,
+    "imageUrl": "https://images.unsplash.com/photo-1447069387593-a5de0862481e?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-13T16:29:02.239Z"
+    }
+  },
+  {
+    "title": "History of Scientific Revolutions",
+    "description": "Scientific progress from Copernicus, Newton, Darwin, to Einstein's theories.",
+    "category": "Humanities",
+    "difficulty": "Advanced",
+    "duration": "12 Weeks",
+    "rating": 4.9,
+    "tasksCount": 12,
+    "imageUrl": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": {
+      "$date": "2026-06-11T16:29:02.239Z"
+    }
+  }
+]

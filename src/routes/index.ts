@@ -5,6 +5,7 @@ import userRouter from "./user.routes.js";
 import studyRouter from "./study-plan.routes.js";
 import conversationRouter from "./conversation.routes.js";
 import recommendationRouter from "./recommendation.routes.js";
+import exploreRouter from "./explore-template.routes.js";
 
 const apiRouter = Router();
 
@@ -28,5 +29,12 @@ apiRouter.use("/ai/conversations", conversationRouter);
 
 // Mount Adaptive AI Recommendations routes
 apiRouter.use("/recommendations", recommendationRouter);
+
+// Mount public explore catalog routes
+apiRouter.use("/explore", exploreRouter);
+
+// Mount public support routes
+import supportRouter from "./support.routes.js";
+apiRouter.use("/support", supportRouter);
 
 export default apiRouter;
