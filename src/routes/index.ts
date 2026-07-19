@@ -3,6 +3,8 @@ import { Router } from "express";
 import { requireAuth } from "../middleware/auth.middleware.js";
 import userRouter from "./user.routes.js";
 import studyRouter from "./study-plan.routes.js";
+import conversationRouter from "./conversation.routes.js";
+import recommendationRouter from "./recommendation.routes.js";
 
 const apiRouter = Router();
 
@@ -20,5 +22,11 @@ apiRouter.use("/users", userRouter);
 
 // Mount study-plan routes
 apiRouter.use("/study-plans", studyRouter);
+
+// Mount AI conversation routes
+apiRouter.use("/ai/conversations", conversationRouter);
+
+// Mount Adaptive AI Recommendations routes
+apiRouter.use("/recommendations", recommendationRouter);
 
 export default apiRouter;

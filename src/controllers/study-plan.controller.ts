@@ -223,3 +223,165 @@ export const deleteStudyPlan = async (req: Request, res: Response): Promise<void
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
+/**
+ * POST /api/study-plans/generate
+ * Agentic AI study plan builder using Gemini 1.5 Flash.
+ * Analyzes constraints, priorities, learning style, and available hours.
+ */
+export const generateStudyPlan = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ success: false, message: "Unauthorized" });
+      return;
+    }
+
+    const {
+      subject,
+      goal,
+      skillLevel,
+      examDate,
+      dailyStudyTime,
+      preferredStudyDays,
+      weakTopics,
+      strongTopics,
+      preferredLearningStyle,
+      additionalInstructions,
+      planLength,
+    } = req.body;
+
+    // Input Validations
+    if (!subject || typeof subject !== "string" || subject.trim() === "") {
+      res.status(400).json({ success: false, message: "Subject is required and must be a valid string" });
+      return;
+    }
+    if (!goal || typeof goal !== "string" || goal.trim() === "") {
+      res.status(400).json({ success: false, message: "Goal is required and must be a valid string" });
+      return;
+    }
+    if (!skillLevel || !["beginner", "intermediate", "advanced"].includes(skillLevel)) {
+      res.status(400).json({ success: false, message: "Valid skillLevel (beginner, intermediate, advanced) is required" });
+      return;
+    }
+    if (!examDate || isNaN(Date.parse(examDate))) {
+      res.status(400).json({ success: false, message: "Valid examDate is required" });
+      return;
+    }
+    if (typeof dailyStudyTime !== "number" || dailyStudyTime <= 0 || dailyStudyTime > 24) {
+      res.status(400).json({ success: false, message: "Daily study hours must be a positive number between 1 and 24" });
+      return;
+    }
+
+    const resolvedLength = planLength || "standard";
+    const daysRemaining = Math.max(
+      1,
+      Math.ceil((Date.parse(examDate) - Date.now()) / (1000 * 60 * 60 * 24))
+    );
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      res.status(500).json({ success: false, message: "Gemini AI API key is not configured on the server" });
+      return;
+    }
+
+    // Agentic Prompt template enforcing structured output constraints and logical phases
+    const prompt = `
+You are an expert academic planner. You will generate a highly personalized study plan based on the following student inputs:
+- Subject: ${subject}
+- Goal: ${goal}
+- Skill Level: ${skillLevel}
+- Target Exam Date: ${examDate} (${daysRemaining} days remaining)
+- Daily Study Time Capacity: ${dailyStudyTime} hours
+- Preferred Study Days: ${preferredStudyDays ? preferredStudyDays.join(", ") : "Any days"}
+- Weak Topics (focus heavily on these): ${weakTopics ? weakTopics.join(", ") : "None specified"}
+- Strong Topics (can be covered faster): ${strongTopics ? strongTopics.join(", ") : "None specified"}
+- Preferred Learning Style: ${preferredLearningStyle || "Standard visual/practical learning"}
+- Additional Instructions: ${additionalInstructions || "None"}
+- Requested Plan Length: ${resolvedLength} (adjust detail level: short, standard, detailed)
+
+Agentic planning steps:
+1. Analyze user constraints: There are ${daysRemaining} days remaining until target exam date.
+2. Prioritize weak topics: Allocate more study tasks and active revision cycles for: ${weakTopics ? weakTopics.join(", ") : "None"}.
+3. Distribute tasks according to daily study time (${dailyStudyTime} hours).
+4. Organize into a phased roadmap. If planLength is 'short', generate exactly 2 phases. If 'standard', generate 3 phases. If 'detailed', generate 5 phases.
+5. Provide a realistic suggested daily schedule routine list based on their learning style.
+6. Provide a concrete revision strategy.
+
+Ensure your output is a strictly formatted JSON object matching this schema. Do not output markdown wrappers like \`\`\`json:
+{
+  "roadmap": [
+    {
+      "phaseName": "Phase Name (e.g. Phase 1: Core Fundamentals)",
+      "tasks": [
+        {
+          "id": "task-1",
+          "title": "Task title",
+          "description": "Concrete explanation of what to study and do",
+          "estimatedHours": 4
+        }
+      ]
+    }
+  ],
+  "dailySchedule": [
+    "Specific routine instruction 1",
+    "Specific routine instruction 2"
+  ],
+  "revisionStrategy": "Text detailing the revision intervals and active recall instructions"
+}
+`;
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                {
+                  text: prompt,
+                },
+              ],
+            },
+          ],
+          generationConfig: {
+            responseMimeType: "application/json",
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      res.status(502).json({ success: false, message: `AI Service Error: ${errorText}` });
+      return;
+    }
+
+    const resData = await response.json();
+    const rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!rawText) {
+      res.status(502).json({ success: false, message: "AI Service returned empty content" });
+      return;
+    }
+
+    const parsedPlan = JSON.parse(rawText.trim());
+
+    // Schema Validation
+    if (!parsedPlan.roadmap || !Array.isArray(parsedPlan.roadmap)) {
+      res.status(502).json({ success: false, message: "Invalid AI response structure" });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      data: parsedPlan,
+    });
+  } catch (error) {
+    console.error("AI Planner Generation Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error during plan generation" });
+  }
+};

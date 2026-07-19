@@ -6,6 +6,7 @@ import {
   getStudyPlanById,
   updateStudyPlan,
   deleteStudyPlan,
+  generateStudyPlan,
 } from "../controllers/study-plan.controller.js";
 
 const studyRouter = Router();
@@ -14,6 +15,7 @@ const studyRouter = Router();
 studyRouter.use(requireAuth);
 
 studyRouter.post("/", createStudyPlan);
+studyRouter.post("/generate", generateStudyPlan);
 studyRouter.get("/", getStudyPlans);
 studyRouter.get("/:id", getStudyPlanById);
 studyRouter.patch("/:id", updateStudyPlan);
