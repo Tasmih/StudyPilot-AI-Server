@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { requireAuth } from "../middleware/auth.middleware.js";
 import userRouter from "./user.routes.js";
+import studyRouter from "./study-plan.routes.js";
 
 const apiRouter = Router();
 
@@ -17,7 +18,7 @@ apiRouter.get("/auth-test", requireAuth, (req, res) => {
 // Mount user routes
 apiRouter.use("/users", userRouter);
 
-// Placeholders for future endpoint routers:
-// apiRouter.use("/study", studyRouter);
+// Mount study-plan routes
+apiRouter.use("/study-plans", studyRouter);
 
 export default apiRouter;
