@@ -28,6 +28,9 @@ export const env = {
 
   AUTH_SERVER_URL:
     process.env.AUTH_SERVER_URL ?? "",
+
+  FRONTEND_URL:
+    process.env.FRONTEND_URL ?? "http://localhost:3000",
 };
 
 
