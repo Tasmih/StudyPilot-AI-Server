@@ -332,7 +332,7 @@ Ensure your output is a strictly formatted JSON object matching this schema. Do 
 `;
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: {
@@ -357,14 +357,31 @@ Ensure your output is a strictly formatted JSON object matching this schema. Do 
 
     if (!response.ok) {
       const errorText = await response.text();
-      res.status(502).json({ success: false, message: `AI Service Error: ${errorText}` });
+      console.error("[Study Planner] Gemini API error response:", errorText);
+      
+      let parsedError: any = {};
+      try {
+        parsedError = JSON.parse(errorText);
+      } catch {}
+
+      res.status(502).json({
+        success: false,
+        message: "AI Planner service is temporarily unavailable",
+        code: "AI_PROVIDER_ERROR",
+        details: process.env.NODE_ENV === "development" ? parsedError : undefined
+      });
       return;
     }
 
     const resData = await response.json();
     const rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!rawText) {
-      res.status(502).json({ success: false, message: "AI Service returned empty content" });
+      console.error("[Study Planner] Gemini API returned empty response:", JSON.stringify(resData));
+      res.status(502).json({
+        success: false,
+        message: "AI Planner service returned empty response",
+        code: "AI_EMPTY_RESPONSE"
+      });
       return;
     }
 

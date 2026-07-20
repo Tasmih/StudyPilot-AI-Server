@@ -261,13 +261,17 @@ Guidelines:
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("[AI Tutor] Missing GEMINI_API_KEY environment variable");
-      res.status(500).json({ success: false, message: "AI Tutor service configuration error" });
+      res.status(500).json({
+        success: false,
+        message: "Gemini AI API key is not configured on the server",
+        code: "CONFIG_ERROR"
+      });
       return;
     }
 
     // Call Gemini API using native fetch
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: {
@@ -289,7 +293,18 @@ Guidelines:
     if (!response.ok) {
       const errorText = await response.text();
       console.error("[AI Tutor] Gemini API error response:", errorText);
-      res.status(502).json({ success: false, message: "AI Tutor Service is temporarily unavailable" });
+      
+      let parsedError: any = {};
+      try {
+        parsedError = JSON.parse(errorText);
+      } catch {}
+
+      res.status(502).json({
+        success: false,
+        message: "AI Tutor service is temporarily unavailable",
+        code: "AI_PROVIDER_ERROR",
+        details: process.env.NODE_ENV === "development" ? parsedError : undefined
+      });
       return;
     }
 
@@ -297,7 +312,11 @@ Guidelines:
     const aiResponseText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!aiResponseText || typeof aiResponseText !== "string") {
       console.error("[AI Tutor] Gemini API returned empty or invalid response:", JSON.stringify(resData));
-      res.status(502).json({ success: false, message: "Failed to generate AI response" });
+      res.status(502).json({
+        success: false,
+        message: "Failed to generate AI response from provider",
+        code: "AI_EMPTY_RESPONSE"
+      });
       return;
     }
 

@@ -81,7 +81,7 @@ Required JSON Schema:
 `;
 
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
     {
       method: "POST",
       headers: {
@@ -106,12 +106,14 @@ Required JSON Schema:
 
   if (!response.ok) {
     const errText = await response.text();
+    console.error("[Recommendations] Gemini API error response:", errText);
     throw new Error(`AI Service Error: ${errText}`);
   }
 
   const resData = await response.json();
   const rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!rawText) {
+    console.error("[Recommendations] Gemini API returned empty content:", JSON.stringify(resData));
     throw new Error("AI Service returned empty content");
   }
 
