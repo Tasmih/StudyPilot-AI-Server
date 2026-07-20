@@ -1,302 +1,274 @@
 # StudyPilot AI — Backend API
 
-StudyPilot AI Backend is an Express REST API built with TypeScript and backed by MongoDB Atlas. It handles user authentication, catalog retrieval, personalized AI study plan generation, interactive tutor chats, and adaptive recommendations using Gemini.
+[![Node.js Version](https://img.shields.io/badge/Node.js-20.x-green?logo=nodedotjs)](https://nodejs.org)
+[![Express Version](https://img.shields.io/badge/Express-5.2-lightgrey?logo=express)](https://expressjs.com)
+[![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://www.mongodb.com/cloud/atlas)
+[![Gemini](https://img.shields.io/badge/Gemini-3.5--Flash-blue?logo=google)](https://deepmind.google/technologies/gemini)
 
-This repository contains the Node.js / Express backend server codebase.
+StudyPilot AI Backend is an Express.js REST API built in TypeScript. It serves as the core coordinator for the platform, managing database access to MongoDB Atlas, route authentication, email services via Resend, and API integrations with Google Gemini (`gemini-3.5-flash`) for AI features.
+
+This repository contains the backend server codebase.
 
 ---
 
 ## Table of Contents
-1. [Backend Overview](#backend-overview)
-2. [Data Persistence Architecture](#data-persistence-architecture)
-3. [Technology Stack](#technology-stack)
-4. [Backend Directory Structure](#backend-directory-structure)
-5. [API Endpoint Catalog](#api-endpoint-catalog)
-6. [Study Plan Generation Data Flow](#study-plan-generation-data-flow)
-7. [AI Tutor Context Workflow](#ai-tutor-context-workflow)
-8. [AI Recommendation Analytics](#ai-recommendation-analytics)
-9. [MongoDB Database Schema Design](#mongodb-database-schema-design)
-10. [Database Seeder](#database-seeder)
-11. [Authentication & Route Security](#authentication--route-security)
-12. [Structured Error Handling](#structured-error-handling)
-13. [Environment Variables](#environment-variables)
-14. [Local Development](#local-development)
-15. [Production Deployment](#production-deployment)
-16. [Assignment Compliance](#assignment-compliance)
-17. [Troubleshooting Guide](#troubleshooting-guide)
-18. [Project Status](#project-status)
+- [1. Backend Architecture](#1-backend-architecture)
+- [2. System Architecture & Flows](#2-system-architecture--flows)
+- [3. Core Responsibilities](#3-core-responsibilities)
+- [4. API Endpoint Catalog](#4-api-endpoint-catalog)
+- [5. Database Schema Design](#5-database-schema-design)
+- [6. Agentic AI Workflows](#6-agentic-ai-workflows)
+  - [AI Study Planner](#ai-study-planner)
+  - [AI Tutor Context Engine](#ai-tutor-context-engine)
+  - [AI Recommendation Analytics](#ai-recommendation-analytics)
+- [7. Error Handling & Diagnostics](#7-error-handling--diagnostics)
+- [8. Contact & Mail Dispatch (Resend Integration)](#8-contact-&-mail-dispatch-resend-integration)
+- [9. Environmental Variables](#9-environmental-variables)
+- [10. Local Setup & Seeding](#10-local-setup--&-seeding)
+- [11. Production Deployment & Security](#11-production-deployment-&-security)
+- [12. Assignment Compliance Matrix](#12-known-limitations-&-roadmap)
 
 ---
 
-## Backend Overview
-
-The backend orchestrates the logic of StudyPilot AI. It exposes endpoints to the frontend, communicates with MongoDB Atlas for persistent storage, validates request structures, handles user authentication checks, and interfaces securely with the Gemini API to execute the platform's Agentic workflows.
-
----
-
-## Data Persistence Architecture
-
-The backend supports the platform's multi-tier data model:
-* **Explore Templates**: Public curriculum catalog loaded from the `explore_templates` collection.
-* **AI Study Plans**: User-specific roadmaps stored in the `study_plans` collection.
-* **My Items Sandbox**: Decoupled from the backend API completely. Manually managed items are kept in browser local storage and do not communicate with backend endpoints.
-
----
-
-## Technology Stack
-
-* **Runtime**: Node.js & Express.js
-* **Language**: TypeScript
-* **Database**: MongoDB (Atlas cloud integration)
-* **SDKs**: Google Gen AI SDK (Gemini Integration)
-* **Security & Middleware**: Better Auth integration, CORS, dotenv, helmet, morgan
-* **Build Tools**: TypeScript Compiler (tsc), ts-node
-
----
-
-## Backend Directory Structure
+## 1. Backend Architecture
 
 ```
-StudyPilot-AI-Server/
-├── src/
-│   ├── config/             # Database connection setups
-│   ├── controllers/        # Express handlers (auth, plan, tutor, recommendations)
-│   ├── middleware/         # Auth validation, error handlers, loggers
-│   ├── models/             # Mongoose/native schemas (plans, templates, logs)
-│   ├── routes/             # REST route path definitions
-│   ├── scripts/            # Database seeder scripts (seed.ts)
-│   ├── services/           # External API utilities (Gemini connection, auth wrappers)
-│   ├── types/              # TypeScript typings
-│   └── app.ts              # Express initialization
-├── package.json
-└── tsconfig.json
+┌────────────────────────────────────────────────────────┐
+│                  STUDYPILOT AI SERVER                  │
+├──────────────────────────┬─────────────────────────────┤
+│   EXPRESS ROUTE PORTS    │    PERSISTENT STORAGE DATA  │
+│                          │                             │
+│   - /api/templates       │    - explore_templates      │
+│   - /api/study-plans     │    - study_plans            │
+│   - /api/conversations   │    - recommendations        │
+│   - /api/recommendations │                             │
+└──────────────────────────┴─────────────────────────────┘
+```
+
+The server manages all authenticated state transitions, coordinates database queries, and executes AI generation prompts. Standalone client features (such as "My Items") operate independently via client-side `localStorage` and bypass the Express server entirely to ensure clean data isolation.
+
+---
+
+## 2. System Architecture & Flows
+
+### Overall System Architecture
+```mermaid
+graph TD
+    User([User Browser])
+    subgraph Frontend [Next.js Client]
+        UI[React 19 Components]
+        LC[LocalStorage Sandbox]
+        BA[Better Auth Client SDK]
+    end
+    subgraph Backend [Express API]
+        RT[Express Routes / Controllers]
+        AM[Auth Middleware]
+        GS[Google Gemini Service]
+    end
+    subgraph Database [MongoDB Atlas]
+        M1[(explore_templates)]
+        M2[(study_plans)]
+        M3[(conversations)]
+        M4[(recommendations)]
+    end
+    User --> UI
+    UI -->|Session Token| BA
+    UI -->|HTTP Requests| RT
+    UI <-->|Offline Read/Write| LC
+    RT -->|Verify Session| AM
+    RT <-->|Read / Write| Database
+    RT -->|Context Prompt| GS
 ```
 
 ---
 
-## API Endpoint Catalog
+## 3. Core Responsibilities
 
-All API endpoints are prefixed with `/api`. Secure routes require a valid Better Auth session cookie.
-
-### 1. Explore Templates
-* **GET `/api/templates`**
-  - **Auth**: Public
-  - **Query Parameters**: `search`, `category`, `difficulty`, `sortBy`, `page`, `limit`
-  - **Purpose**: Retrieves a list of reference blueprints from the `explore_templates` database collection.
-* **GET `/api/templates/:id`**
-  - **Auth**: Public
-  - **Purpose**: Fetches metadata for a specific blueprint. Used to populate the AI Planner form.
-
-### 2. Study Plans
-* **POST `/api/study-plans/generate`**
-  - **Auth**: Required
-  - **Request Body**:
-    ```json
-    {
-      "subject": "Intro to Algorithms",
-      "examDate": "2026-08-15",
-      "studyHoursPerDay": 3,
-      "studyDaysPerWeek": 5,
-      "difficulty": "Intermediate",
-      "weakTopics": ["Binary Search Trees", "Dynamic Programming"],
-      "additionalInstructions": "Focus on big-O notation complexity analysis"
-    }
-    ```
-  - **Purpose**: Triggers Gemini `gemini-3.5-flash` to reason, pace tasks, and return a structured study plan JSON matching the schema.
-* **POST `/api/study-plans`**
-  - **Auth**: Required
-  - **Purpose**: Persists a generated study plan to the user's MongoDB `study_plans` collection.
-* **GET `/api/study-plans`**
-  - **Auth**: Required
-  - **Purpose**: Retrieves all study plans belonging to the authenticated user.
-* **PATCH `/api/study-plans/:planId/tasks/:taskId`**
-  - **Auth**: Required
-  - **Request Body**: `{ "completed": true }`
-  - **Purpose**: Checks off study roadmap tasks, triggering updates on the dashboard progress metrics.
-* **DELETE `/api/study-plans/:id`**
-  - **Auth**: Required
-  - **Purpose**: Deletes a study plan from the user's account.
-
-### 3. AI Tutor Chat
-* **POST `/api/conversations`**
-  - **Auth**: Required
-  - **Purpose**: Creates a new AI Tutor chat thread.
-* **GET `/api/conversations`**
-  - **Auth**: Required
-  - **Purpose**: Lists all active conversation threads for the user.
-* **POST `/api/conversations/:id/messages`**
-  - **Auth**: Required
-  - **Request Body**: `{ "content": "Explain my current study schedule" }`
-  - **Purpose**: Feeds the user's active MongoDB study plans as context into Gemini and generates a tailored study response.
-* **DELETE `/api/conversations/:id`**
-  - **Auth**: Required
-  - **Purpose**: Deletes a chat history thread.
-
-### 4. Recommendations
-* **GET `/api/recommendations`**
-  - **Auth**: Required
-  - **Purpose**: Returns the active calculated recommendations checklist.
-* **POST `/api/recommendations/refresh`**
-  - **Auth**: Required
-  - **Purpose**: Forces Gemini to re-analyze task completions and weak topic scores, returning refreshed strategies.
+* **Auth Verification**: Intercepts request headers to validate active Better Auth sessions and route payloads.
+* **Seeded Catalog**: Serves search-ready blueprints from the `explore_templates` database collection.
+* **AI Plan Generation**: Integrates the Gemini API, using strict JSON schemas to generate structured study roadmaps.
+* **Contextual AI Chat (Tutor)**: Compiles active study plans and task completion histories from MongoDB into context prompts for the AI.
+* **Recommendations Engine**: Compiles student checkpoints and calculates progress metrics to generate personalized tips.
+* **Error Sanitization**: Sanitizes stack traces in production while returning detailed diagnostics in development mode.
 
 ---
 
-## Study Plan Generation Data Flow
+## 4. API Endpoint Catalog
 
-```
-[Client App] --(POST /study-plans/generate)--> [Backend API]
-                                                      |
-                                             (Enforce JSON Schema)
-                                                      v
-[Client App] <---(Preview JSON Roadmap)--- [Gemini API (gemini-3.5-flash)]
-      |
-(User clicks Save)
-      |
-      +--------(POST /study-plans)---------> [MongoDB Atlas (study_plans)]
+All routes are prefixed with `/api`. Protected routes require a valid Better Auth session header.
+
+### Explore Blueprints Catalog
+| Method | Route | Auth | Payload | Purpose |
+| --- | --- | --- | --- | --- |
+| **GET** | `/api/templates` | Public | None | Paginated template search list. |
+| **GET** | `/api/templates/:id` | Public | None | Retrieve details of a blueprint template. |
+
+### AI Study Plans
+| Method | Route | Auth | Payload | Purpose |
+| --- | --- | --- | --- | --- |
+| **POST** | `/api/study-plans/generate` | Required | Plan constraints | Generates structured JSON roadmap from Gemini. |
+| **POST** | `/api/study-plans` | Required | Reconstructed JSON | Saves generated plan to MongoDB `study_plans`. |
+| **GET** | `/api/study-plans` | Required | None | Fetch all plans for the logged-in user. |
+| **PATCH** | `/api/study-plans/:planId/tasks/:taskId` | Required | `{ "completed": boolean }` | Updates task completion status. |
+| **DELETE** | `/api/study-plans/:id` | Required | None | Removes a saved plan from the database. |
+
+### AI Tutor Chat
+| Method | Route | Auth | Payload | Purpose |
+| --- | --- | --- | --- | --- |
+| **POST** | `/api/conversations` | Required | Chat title | Opens a new conversation thread. |
+| **GET** | `/api/conversations` | Required | None | Fetch user conversation history threads. |
+| **POST** | `/api/conversations/:id/messages` | Required | `{ "content": string }` | Sends query and returns a context-aware AI response. |
+| **DELETE** | `/api/conversations/:id` | Required | None | Removes a chat conversation thread. |
+
+### AI Recommendations
+| Method | Route | Auth | Payload | Purpose |
+| --- | --- | --- | --- | --- |
+| **GET** | `/api/recommendations` | Required | None | Retrieve user-specific study recommendations. |
+| **POST** | `/api/recommendations/refresh` | Required | None | Re-analyze checklist progress to update recommendations. |
+
+---
+
+## 5. Database Schema Design
+
+### Collection `explore_templates`
+```typescript
+interface ExploreTemplate {
+  _id: ObjectId;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  duration: string;
+  rating: number;
+  tasks: string[];
+}
 ```
 
-### JSON Schema Verification
-The backend enforces structured JSON output using Gemini's configuration flags:
-- `responseMimeType: "application/json"`
-- `responseSchema`: Standardizes keys to prevent parser failures:
-  - `roadmap`: Array of phases containing names and task arrays.
-  - `dailySchedule`: Array detailing study timelines.
-  - `revisionStrategy`: Instructions for retention.
-
----
-
-## AI Tutor Context Workflow
-
-1. A message arrives on `/api/conversations/:id/messages`.
-2. The middleware authenticates the user ID.
-3. The tutor controller queries `study_plans` matching the user.
-4. It compiles a context payload detailing: active subjects, task completeness rates (e.g. *Task 1 completed, Task 2 incomplete*), and target deadlines.
-5. The tutor controller feeds this payload along with the chat history into Gemini, returning a response relevant to the student's progress.
-
----
-
-## AI Recommendation Analytics
-
-1. The recommendations controller queries user study plans.
-2. It tracks the ratio of completed tasks to total tasks per roadmap.
-3. Gemini is prompted with progress parameters to identify areas falling behind and output:
-   - High, Medium, and Low priority topics to review.
-   - Recommended actions with estimated durations (e.g. *"Spend 45 mins practicing Recursion"*).
-
----
-
-## MongoDB Database Schema Design
-
-### 1. `explore_templates`
-- `title` (String): Curriculum header.
-- `description` (String): Core description.
-- `category` (String): Academic field.
-- `difficulty` (String): Level.
-- `tasks` (Array): Sub-activities.
-- `rating` (Number): Community grade.
-
-### 2. `study_plans`
-- `userId` (String): Reference key.
-- `subject` (String): Target topic.
-- `description` (String): Reconstructed JSON roadmap container.
-- `examDate` (Date): Timeline boundary.
-- `completed` (Boolean): Target flag.
-
----
-
-## Database Seeder
-
-A database script is included to populate the catalog with 100 templates:
-```bash
-# Execute seeding script
-npm run seed
+### Collection `study_plans`
+```typescript
+interface StudyPlan {
+  _id: ObjectId;
+  userId: string;
+  subject: string;
+  description: string; // Enforces structured roadmap, dailySchedule, revisionStrategy
+  examDate: Date;
+  completed: boolean;
+  createdAt: Date;
+}
 ```
-This loads templates across Software Development, Business, Science, Design, and Humanities into the `explore_templates` collection.
 
 ---
 
-## Authentication & Route Security
+## 6. Agentic AI Workflows
 
-- Route requests are processed by the auth middleware before database access.
-- Validates the active session signature using the Better Auth client headers.
-- Restricts cross-origin requests using CORS whitelist configurations.
+### AI Study Planner
+Generates structured roadmaps with task schedules and revision strategies.
+
+```mermaid
+graph TD
+    Inputs[User Plan Constraints] -->|POST /study-plans/generate| API[Express API]
+    API -->|Prompt with JSON Schema| Gemini[Gemini 3.5-Flash]
+    Gemini -->|Structured JSON Response| Preview[Frontend Preview Screen]
+    Preview -->|Click Save Plan| Database[(MongoDB study_plans)]
+```
+
+* **Schema Enforcement**: Configures the Gemini request using `responseMimeType: "application/json"` and a strict `responseSchema` mapping phases, tasks, estimates, and schedules.
+* **Compatibility Fallbacks**: Backend sanitization filters strip code fences (e.g. ` ```json `) to ensure robust JSON parsing.
+
+### AI Tutor Context Engine
+Compiles the user's active plans and checklist completion states into context prompts for the AI.
+
+```mermaid
+graph TD
+    UserQ[User Chat Question] -->|Send Message| API[Express API]
+    API -->|Query MongoDB| DB[(Fetch study_plans & progress)]
+    DB -->|Format Context Prompt| Gemini[Gemini 3.5-Flash]
+    Gemini -->|Context-Aware Markdown Answer| Client[Render Chat Bubble]
+```
+
+### AI Recommendation Analytics
+Monitors progress ratios and pending tasks to generate personalized study targets.
+
+```mermaid
+graph TD
+    Trigger[User Requests Refresh] -->|Query Active Progress| DB[(Fetch study_plans & progress)]
+    DB -->|Construct Analytics Prompt| Gemini[Gemini 3.5-Flash]
+    Gemini -->|Recommendations List| Render[Update Strategy Cards]
+```
 
 ---
 
-## Structured Error Handling
+## 7. Error Handling & Diagnostics
 
-Standardized API errors return clean descriptors:
-- `CONFIG_ERROR`: Gemini API Key or credentials missing.
-- `AI_PROVIDER_ERROR`: Google Gemini returned an execution failure.
-- `AI_EMPTY_RESPONSE`: Gemini returned an empty payload.
+The server standardizes response formats for client-side error handling:
+* **`CONFIG_ERROR`**: Indicates a missing Gemini API key or database configuration.
+* **`AI_PROVIDER_ERROR`**: Indicates an upstream execution failure from the Google Gemini API.
+* **`AI_EMPTY_RESPONSE`**: Indicates that the AI returned an empty response.
 
 ---
 
-## Environment Variables
+## 8. Contact & Mail Dispatch (Resend Integration)
+
+Contact requests are handled by the contact controller:
+* If a valid `RESEND_API_KEY` is configured, it sends an email confirmation.
+* If the API key is missing or set to a placeholder, it runs in **Mock Mode**, logging details to the console and returning a success state to the client.
+
+---
+
+## 9. Environmental Variables
 
 Create a `StudyPilot-AI-Server/.env` file:
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/studypilot_ai
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/studypilot_ai
 GEMINI_API_KEY=AIzaSy...
-BETTER_AUTH_SECRET=secret_token...
 FRONTEND_URL=http://localhost:3000
+RESEND_API_KEY=re_...
 ```
+* **PORT**: Port on which the API server runs.
+* **MONGODB_URI**: Connection string for MongoDB Atlas.
+* **GEMINI_API_KEY**: API key for Google Gemini.
+* **FRONTEND_URL**: CORS domain configurations matching client app ports.
+* **RESEND_API_KEY**: API key for Resend email dispatch.
 
 ---
 
-## Local Development
+## 10. Local Setup & Seeding
 
-1. **Install dependencies**:
+1. Clone the repository and navigate to the project folder.
+2. Install dependencies:
    ```bash
    npm install
    ```
-2. **Seed catalog data**:
+3. Seed the catalog with 100 template guides:
    ```bash
    npm run seed
    ```
-3. **Start development server**:
+4. Start the local server:
    ```bash
    npm run dev
    ```
-4. **Compile TypeScript**:
-   ```bash
-   npm run build
-   ```
+5. The API endpoints will be accessible at [http://localhost:5000](http://localhost:5000).
 
 ---
 
-## Production Deployment
+## 11. Production Deployment & Security
 
-Recommended deploy on environments like **Render**, **Railway**, or **Heroku**:
+Deploy the Express server using platform runners (like **Render**, **Railway**, or **Heroku**):
 ```bash
+# Compile TS to JS modules
 npm run build
-npm start
+
+# Start production build server
+npm run start
 ```
-Make sure database variables and the Gemini API key are loaded in your deployment panel environment dashboard.
+* Ensure `FRONTEND_URL` is set to your production frontend domain to authorize CORS requests.
+* Production error logs suppress raw stack traces to protect database structural schemas.
 
 ---
 
-## Assignment Compliance
+## 12. Assignment Compliance Matrix
 
-Fulfills backend criteria of the SCIC-13 assignment, incorporating a secure Node.js/Express API structure in TypeScript, MongoDB Atlas cloud storage, and secure Gemini model integrations with strict JSON schema constraints.
-
----
-
-## Troubleshooting Guide
-
-### 1. Gemini API Key Errors (403/400)
-Verify that your `GEMINI_API_KEY` env variable is set and supports model generation.
-
-### 2. JSON Parsing Anomalies
-Verify that the prompt specifies `gemini-3.5-flash` which supports Gemini JSON schemas.
-
-### 3. CORS Preflight Failures
-Ensure `FRONTEND_URL` matches the domain of the client Next.js application.
-
----
-
-## Project Status
-
-**STABLE / ACTIVE**: The backend successfully handles user authentication, routes data persistence, seeds catalogs, and runs Gemini integrations.
+* **Runtime & Storage**: Node.js, Express, and MongoDB Atlas.
+* **Data Seed**: Includes a database seed script (`npm run seed`) that loads 100 templates.
+* **Agentic Workflows**: Integrated Gemini 3.5-Flash for planners, tutor chat, and recommendations.
