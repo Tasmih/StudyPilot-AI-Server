@@ -8,10 +8,10 @@ dns.setServers([
 import { MongoClient, Db } from "mongodb";
 import { env } from "./env.js";
 
-
 export const client = new MongoClient(env.MONGO_URI, {
   serverSelectionTimeoutMS: 10000,
 });
+
 export const db = client.db(env.DB_NAME);
 
 /**
@@ -28,19 +28,15 @@ export async function connectDB(): Promise<Db> {
   }
 }
 
-
 /**
  * Closes the active MongoDB connection gracefully.
  */
 export async function closeDB(): Promise<void> {
-  if (client) {
-    try {
-      await client.close();
-      console.log("[Database] Active MongoDB connection closed gracefully.");
-    } catch (error) {
-      console.error("[Database] Error closing MongoDB connection:", error);
-      throw error;
-    }
+  try {
+    await client.close();
+    console.log("[Database] Active MongoDB connection closed gracefully.");
+  } catch (error) {
+    console.error("[Database] Error closing MongoDB connection:", error);
+    throw error;
   }
 }
-
