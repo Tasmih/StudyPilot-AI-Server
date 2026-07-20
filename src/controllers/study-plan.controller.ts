@@ -350,6 +350,40 @@ Ensure your output is a strictly formatted JSON object matching this schema. Do 
           ],
           generationConfig: {
             responseMimeType: "application/json",
+            responseSchema: {
+              type: "OBJECT",
+              properties: {
+                roadmap: {
+                  type: "ARRAY",
+                  items: {
+                    type: "OBJECT",
+                    properties: {
+                      phaseName: { type: "STRING" },
+                      tasks: {
+                        type: "ARRAY",
+                        items: {
+                          type: "OBJECT",
+                          properties: {
+                            id: { type: "STRING" },
+                            title: { type: "STRING" },
+                            description: { type: "STRING" },
+                            estimatedHours: { type: "INTEGER" }
+                          },
+                          required: ["id", "title", "description", "estimatedHours"]
+                        }
+                      }
+                    },
+                    required: ["phaseName", "tasks"]
+                  }
+                },
+                dailySchedule: {
+                  type: "ARRAY",
+                  items: { type: "STRING" }
+                },
+                revisionStrategy: { type: "STRING" }
+              },
+              required: ["roadmap", "dailySchedule", "revisionStrategy"]
+            }
           },
         }),
       }
@@ -394,27 +428,42 @@ Ensure your output is a strictly formatted JSON object matching this schema. Do 
     let parsedPlan: any;
     try {
       parsedPlan = JSON.parse(cleanedText);
-    } catch (err) {
+    } catch (err: any) {
       const startIdx = cleanedText.indexOf("{");
       const endIdx = cleanedText.lastIndexOf("}");
       if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
         try {
           parsedPlan = JSON.parse(cleanedText.substring(startIdx, endIdx + 1));
-        } catch (innerErr) {
+        } catch (innerErr: any) {
           console.error("[Study Planner] Failed to parse extracted JSON block:", innerErr);
-          res.status(502).json({ success: false, message: "AI response contains invalid JSON format" });
+          res.status(502).json({
+            success: false,
+            message: "AI response contains invalid JSON format",
+            code: "AI_INVALID_JSON",
+            details: process.env.NODE_ENV === "development" ? { error: innerErr.message, rawText } : undefined
+          });
           return;
         }
       } else {
         console.error("[Study Planner] JSON parsing failed and no enclosing braces found:", err);
-        res.status(502).json({ success: false, message: "AI response could not be parsed as JSON" });
+        res.status(502).json({
+          success: false,
+          message: "AI response could not be parsed as JSON",
+          code: "AI_INVALID_JSON",
+          details: process.env.NODE_ENV === "development" ? { error: err.message, rawText } : undefined
+        });
         return;
       }
     }
 
     // Schema Validation
     if (!parsedPlan.roadmap || !Array.isArray(parsedPlan.roadmap)) {
-      res.status(502).json({ success: false, message: "Invalid AI response structure" });
+      res.status(502).json({
+        success: false,
+        message: "AI response schema is invalid or missing roadmap components",
+        code: "AI_INVALID_JSON",
+        details: process.env.NODE_ENV === "development" ? { error: "Missing roadmap or roadmap is not an array", parsedPlan } : undefined
+      });
       return;
     }
 
