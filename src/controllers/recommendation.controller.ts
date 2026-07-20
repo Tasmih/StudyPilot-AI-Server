@@ -117,7 +117,30 @@ Required JSON Schema:
     throw new Error("AI Service returned empty content");
   }
 
-  const parsedData = JSON.parse(rawText.trim());
+  let cleanedText = rawText.trim();
+  if (cleanedText.startsWith("```")) {
+    cleanedText = cleanedText.replace(/^```[a-zA-Z]*\s*/, "").replace(/\s*```$/, "");
+  }
+  cleanedText = cleanedText.trim();
+
+  let parsedData: any;
+  try {
+    parsedData = JSON.parse(cleanedText);
+  } catch (err) {
+    const startIdx = cleanedText.indexOf("{");
+    const endIdx = cleanedText.lastIndexOf("}");
+    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+      try {
+        parsedData = JSON.parse(cleanedText.substring(startIdx, endIdx + 1));
+      } catch (innerErr) {
+        console.error("[Recommendations] Failed to parse extracted JSON block:", innerErr);
+        throw new Error("AI response contains invalid JSON format");
+      }
+    } else {
+      console.error("[Recommendations] JSON parsing failed and no enclosing braces found:", err);
+      throw new Error("AI response could not be parsed as JSON");
+    }
+  }
 
   // Validation
   if (typeof parsedData.summary !== "string") {

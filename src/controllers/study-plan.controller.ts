@@ -385,7 +385,32 @@ Ensure your output is a strictly formatted JSON object matching this schema. Do 
       return;
     }
 
-    const parsedPlan = JSON.parse(rawText.trim());
+    let cleanedText = rawText.trim();
+    if (cleanedText.startsWith("```")) {
+      cleanedText = cleanedText.replace(/^```[a-zA-Z]*\s*/, "").replace(/\s*```$/, "");
+    }
+    cleanedText = cleanedText.trim();
+
+    let parsedPlan: any;
+    try {
+      parsedPlan = JSON.parse(cleanedText);
+    } catch (err) {
+      const startIdx = cleanedText.indexOf("{");
+      const endIdx = cleanedText.lastIndexOf("}");
+      if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+        try {
+          parsedPlan = JSON.parse(cleanedText.substring(startIdx, endIdx + 1));
+        } catch (innerErr) {
+          console.error("[Study Planner] Failed to parse extracted JSON block:", innerErr);
+          res.status(502).json({ success: false, message: "AI response contains invalid JSON format" });
+          return;
+        }
+      } else {
+        console.error("[Study Planner] JSON parsing failed and no enclosing braces found:", err);
+        res.status(502).json({ success: false, message: "AI response could not be parsed as JSON" });
+        return;
+      }
+    }
 
     // Schema Validation
     if (!parsedPlan.roadmap || !Array.isArray(parsedPlan.roadmap)) {
