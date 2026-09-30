@@ -26,6 +26,15 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root Route
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    service: "studypilot-ai-server",
+    message: "StudyPilot AI Server is running",
+  });
+});
+
 // Standard Health Check API
 app.get("/health", (req, res) => {
   res.status(200).json({

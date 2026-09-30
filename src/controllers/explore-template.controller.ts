@@ -2,6 +2,28 @@ import { ObjectId } from "mongodb";
 import type { Request, Response } from "express";
 import { exploreTemplateService } from "../services/explore-template.service.js";
 
+interface CacheEntry<T> {
+  data: T;
+  expiresAt: number;
+}
+
+const catalogCache = new Map<string, CacheEntry<any>>();
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes cache
+const MAX_CACHE_ENTRIES = 500;
+
+// Periodic cleanup of expired cache entries to prevent memory growth
+if (typeof setInterval !== "undefined") {
+  const cleanupTimer = setInterval(() => {
+    const now = Date.now();
+    for (const [key, entry] of catalogCache.entries()) {
+      if (now >= entry.expiresAt) {
+        catalogCache.delete(key);
+      }
+    }
+  }, 60 * 1000);
+  if (cleanupTimer.unref) cleanupTimer.unref();
+}
+
 /**
  * Normalization helper to map MongoDB records to a standard response structure.
  * Supports fallback fields to handle mismatch schemas.
@@ -47,6 +69,7 @@ export function mapTemplateToResponse(doc: any) {
  * GET /api/explore
  * Public API to fetch list of course templates.
  * Supports search query, double filters, sorting, and pagination boundaries.
+ * Includes fast in-memory caching to prevent excessive database hits and rate limits.
  */
 export const getExploreCatalog = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -65,6 +88,15 @@ export const getExploreCatalog = async (req: Request, res: Response): Promise<vo
 
     if (limit < 1) {
       res.status(400).json({ success: false, message: "Limit must be 1 or greater" });
+      return;
+    }
+
+    // Check in-memory cache first to serve fast and avoid rate-limiting triggers
+    const cacheKey = `catalog:${search.toLowerCase()}:${category.toLowerCase()}:${difficulty.toLowerCase()}:${sort}:${page}:${limit}`;
+    const cached = catalogCache.get(cacheKey);
+    if (cached && Date.now() < cached.expiresAt) {
+      res.setHeader("X-Cache", "HIT");
+      res.status(200).json(cached.data);
       return;
     }
 
@@ -90,7 +122,7 @@ export const getExploreCatalog = async (req: Request, res: Response): Promise<vo
     // Normalize each record
     const formattedData = data.map(mapTemplateToResponse);
 
-    res.status(200).json({
+    const responsePayload = {
       success: true,
       data: formattedData,
       pagination: {
@@ -99,7 +131,20 @@ export const getExploreCatalog = async (req: Request, res: Response): Promise<vo
         total,
         totalPages,
       },
+    };
+
+    // Store in cache (evicting oldest entry if cache exceeds limit)
+    if (catalogCache.size >= MAX_CACHE_ENTRIES) {
+      const oldestKey = catalogCache.keys().next().value;
+      if (oldestKey) catalogCache.delete(oldestKey);
+    }
+    catalogCache.set(cacheKey, {
+      data: responsePayload,
+      expiresAt: Date.now() + CACHE_TTL_MS,
     });
+
+    res.setHeader("X-Cache", "MISS");
+    res.status(200).json(responsePayload);
   } catch (error) {
     console.error("Get Explore Catalog Controller Error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
@@ -117,6 +162,15 @@ export const getExploreTemplateById = async (req: Request, res: Response): Promi
 
     if (!id || typeof id !== "string") {
       res.status(400).json({ success: false, message: "Template ID is required" });
+      return;
+    }
+
+    // Check cache for individual template
+    const idCacheKey = `id:${id}`;
+    const cached = catalogCache.get(idCacheKey);
+    if (cached && Date.now() < cached.expiresAt) {
+      res.setHeader("X-Cache", "HIT");
+      res.status(200).json(cached.data);
       return;
     }
 
@@ -139,10 +193,18 @@ export const getExploreTemplateById = async (req: Request, res: Response): Promi
       return;
     }
 
-    res.status(200).json({
+    const responsePayload = {
       success: true,
-      data: mapTemplateToResponse(template)
+      data: mapTemplateToResponse(template),
+    };
+
+    catalogCache.set(idCacheKey, {
+      data: responsePayload,
+      expiresAt: Date.now() + CACHE_TTL_MS,
     });
+
+    res.setHeader("X-Cache", "MISS");
+    res.status(200).json(responsePayload);
   } catch (error) {
     console.error("Get Explore Template By ID Controller Error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
