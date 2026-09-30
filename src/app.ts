@@ -7,6 +7,9 @@ import apiRouter from "./routes/index.js";
 
 const app = express();
 
+// Trust reverse proxy (Render, Cloudflare, Vercel) for accurate client IP identification
+app.set("trust proxy", 1);
+
 // Enable CORS with Credentials support (required for session cookies with Better Auth)
 const allowedOrigins = ["http://localhost:3000"];
 if (env.FRONTEND_URL && env.FRONTEND_URL !== "http://localhost:3000") {

@@ -96,6 +96,7 @@ export const getExploreCatalog = async (req: Request, res: Response): Promise<vo
     const cached = catalogCache.get(cacheKey);
     if (cached && Date.now() < cached.expiresAt) {
       res.setHeader("X-Cache", "HIT");
+      res.setHeader("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
       res.status(200).json(cached.data);
       return;
     }
@@ -144,6 +145,7 @@ export const getExploreCatalog = async (req: Request, res: Response): Promise<vo
     });
 
     res.setHeader("X-Cache", "MISS");
+    res.setHeader("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=600");
     res.status(200).json(responsePayload);
   } catch (error) {
     console.error("Get Explore Catalog Controller Error:", error);
